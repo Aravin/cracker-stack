@@ -32,7 +32,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               Product not found
             </h1>
             <p className="text-lg text-gray-600 mb-8">
-              The fireworks you're looking for doesn't exist.
+              The fireworks you&apos;re looking for doesn&apos;t exist.
             </p>
             <Link href="/products">
               <Button size="lg" className="btn-primary">
