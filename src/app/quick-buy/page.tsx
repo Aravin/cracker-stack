@@ -88,7 +88,36 @@ export default function QuickBuyPage() {
 
   const handleSelectAll = () => {
     const allProductIds = filteredProducts.map(p => p.id)
-    setSelectedProducts(new Set(allProductIds))
+    const allSelected = allProductIds.every(id => selectedProducts.has(id))
+    
+    if (allSelected) {
+      // If all are selected, unselect all
+      setSelectedProducts(new Set())
+    } else {
+      // If not all are selected, select all
+      setSelectedProducts(new Set(allProductIds))
+    }
+  }
+
+  const handleSelectAllInCategory = (categoryProducts: typeof products) => {
+    const categoryProductIds = categoryProducts.map(p => p.id)
+    const allSelected = categoryProductIds.every(id => selectedProducts.has(id))
+    
+    if (allSelected) {
+      // If all in category are selected, unselect all in this category
+      setSelectedProducts(prev => {
+        const newSet = new Set(prev)
+        categoryProductIds.forEach(id => newSet.delete(id))
+        return newSet
+      })
+    } else {
+      // If not all in category are selected, select all in this category
+      setSelectedProducts(prev => {
+        const newSet = new Set(prev)
+        categoryProductIds.forEach(id => newSet.add(id))
+        return newSet
+      })
+    }
   }
 
   const handleAddAllToCart = () => {
@@ -208,8 +237,8 @@ export default function QuickBuyPage() {
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         <input
                           type="checkbox"
-                          checked={selectedProducts.size === filteredProducts.length && filteredProducts.length > 0}
-                          onChange={handleSelectAll}
+                          checked={categoryProducts.length > 0 && categoryProducts.every(p => selectedProducts.has(p.id))}
+                          onChange={() => handleSelectAllInCategory(categoryProducts)}
                           className="rounded border-gray-300 text-red-600 focus:ring-red-500"
                         />
                       </th>
