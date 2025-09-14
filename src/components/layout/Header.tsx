@@ -10,7 +10,8 @@ import { useConfig } from '@/contexts/ConfigContext'
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Products', href: '/products' },
+  { name: 'All Products', href: '/products' },
+  { name: 'Quick Buy', href: '/quick-buy', highlight: true },
   { name: 'Categories', href: '/categories' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
@@ -157,7 +158,11 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-primary font-medium transition-colors"
+                className={`font-medium transition-colors ${
+                  item.highlight 
+                    ? 'text-red-600 hover:text-red-700 bg-red-50 px-3 py-1 rounded-md' 
+                    : 'text-gray-700 hover:text-primary'
+                }`}
               >
                 {item.name}
               </Link>
@@ -184,7 +189,11 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block text-gray-700 hover:text-primary font-medium py-2"
+                  className={`block font-medium py-2 ${
+                    item.highlight 
+                      ? 'text-red-600 hover:text-red-700 bg-red-50 px-3 py-2 rounded-md' 
+                      : 'text-gray-700 hover:text-primary'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
