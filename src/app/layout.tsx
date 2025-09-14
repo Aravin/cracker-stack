@@ -13,11 +13,24 @@ export const metadata: Metadata = {
   description: 'Discover the finest collection of fireworks and crackers for all occasions. Premium quality, competitive prices, and safe delivery.',
   keywords: ['fireworks', 'crackers', 'diwali', 'festival', 'celebration'],
   authors: [{ name: 'CrackerStack Team' }],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
   openGraph: {
     title: 'CrackerStack - Premium Fireworks & Crackers',
     description: 'Discover the finest collection of fireworks and crackers for all occasions.',
     type: 'website',
     locale: 'en_IN',
+    images: [
+      {
+        url: '/icon.png',
+        width: 32,
+        height: 32,
+        alt: 'CrackerStack Logo',
+      },
+    ],
   },
 }
 
